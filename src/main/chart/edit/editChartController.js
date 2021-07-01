@@ -132,13 +132,11 @@ function createEditChartController(vm, projects, config, chartDataService, apiSe
 }
 
 angular.module('adf.widget.redmine').controller('editChartController', function (projects, config, chartDataService, redmineService, $scope, $sce) {
-  $scope.showIdealTooltip = $sce.trustAsHtml('<b>OPTIONAL</b><br>If checked displays an ideal line on the chart');
   $scope.assignedToTooltip = $sce.trustAsHtml('Get issues which are assigned to the given user ID. <b>me</b> (but not <b>&lt;me&gt;</b> or <b>&lt;&lt;me&gt;&gt;</b>) can be used instead an ID to fetch all issues from the logged in user. Leave empty if you want to see all issues.');
   return createEditChartController(this, projects, config, chartDataService, redmineService);
 });
 
 angular.module('adf.widget.easyredmine').controller('easyEditChartController', function (projects, config, easyChartDataService, easyRedmineService,  $scope, $sce) {
-  $scope.showIdealTooltip = $sce.trustAsHtml('<b>OPTIONAL</b><br>If checked displays an ideal line on the chart');
   $scope.assignedToTooltip = $sce.trustAsHtml('Get issues which are assigned to the given user ID. <b>me</b> (but not <b>&lt;me&gt;</b> or <b>&lt;&lt;me&gt;&gt;</b>) can be used instead an ID to fetch all issues from the logged in user. Leave empty if you want to see all issues.');
   return createEditChartController(this, projects, config, easyChartDataService, easyRedmineService);
 });

@@ -7,9 +7,9 @@
           tooltip-trigger="outsideClick"
           tooltip-is-open="projectTooltipIsOpen"
           ng-mouseenter="projectTooltipIsOpen = !projectTooltipIsOpen"
-          uib-tooltip="Choose a project"
+          uib-tooltip="Choose a project. If you don't see any project make sure you have correct access rights in redmine."
           tooltip-placement="top"
-          aria-label="Choose a project"></span>
+          aria-label="Choose a project. If you don't see any project make sure you have correct access rights in redmine."></span>
     <select name="project" id="project" class="form-control" ng-model="vm.config.project" ng-change="vm.checkUpdates()"
             ng-required="true">
       <option value="All">All</option>
@@ -25,9 +25,9 @@
           tooltip-trigger="outsideClick"
           tooltip-is-open="filterTooltipIsOpen"
           ng-mouseenter="filterTooltipIsOpen = !filterTooltipIsOpen"
-          uib-tooltip="Add optional filters like assignee, version or tracker type"
+          uib-tooltip="Add optional filters like assignee, version or tracker type. You can remove filters by click on the 'X' on the right hand side of the filter."
           tooltip-placement="top"
-          aria-label="Add optional filters"></span>
+          aria-label="Add optional filters like assignee, version or tracker type. You can remove filters by click on the 'X' on the right hand side of the filter."></span>
     <select name="filter" id="filter" class="form-control" ng-model="vm.filterToAdd"
             ng-change="vm.addFilter(vm.filterToAdd)">
       <option ng-repeat="filter in vm.filters | orderBy: 'name'" value="{{filter.id}}">{{filter.name}}</option>
@@ -88,9 +88,9 @@
           tooltip-trigger="outsideClick"
           tooltip-is-open="trackerTooltipIsOpen"
           ng-mouseenter="trackerTooltipIsOpen = !trackerTooltipIsOpen"
-          uib-tooltip-html="trackerTooltip"
+          uib-tooltip="Choose a tracker type like bug, feature or support"
           tooltip-placement="top"
-          aria-label="show Ideal-line Tooltip"></span>
+          aria-label="Choose a tracker type like bug, feature or support"></span>
     <div class="input-group" ng-init="vm.updateTracker()">
       <select name="tracker" id="tracker" class="form-control" ng-model="vm.config.tracker">
         <option ng-repeat="tracker in vm.trackers | orderBy: 'name'" value="{{tracker}}">{{tracker.name}}</option>
@@ -111,9 +111,9 @@
           tooltip-trigger="outsideClick"
           tooltip-is-open="showIdealTooltipIsOpen"
           ng-mouseenter="showIdealTooltipIsOpen = !showIdealTooltipIsOpen"
-          uib-tooltip="choose a tracker type like bug, feature or support"
+          uib-tooltip="If checked, shows an additional line in the chart representing the ideal progress of the burndown progress."
           tooltip-placement="top"
-          aria-label="choose a tracker type like bug, feature or support"></span>
+          aria-label="If checked, shows an additional line in the chart representing the ideal progress of the burndown progress."></span>
   </div>
 
   <div>
@@ -124,9 +124,9 @@
           tooltip-trigger="outsideClick"
           tooltip-is-open="periodTooltipIsOpen"
           ng-mouseenter="periodTooltipIsOpen = !periodTooltipIsOpen"
-          uib-tooltip="select the period for which the graph is to be shown"
+          uib-tooltip="Select the period for which the graph is to be shown. Clicking on the calendar icon on the right side opens a calendar in which a date can be selected."
           tooltip-placement="top"
-          aria-label="select the period for which the graph is to be shown"></span>
+          aria-label="Select the period for which the graph is to be shown. Clicking on the calendar icon on the right side opens a calendar in which a date can be selected."></span>
     <p class="input-group">
       <input id="period" name="period" class="form-control" datepicker-options="vm.dateOptions"
              is-open="vm.popup1.opened"

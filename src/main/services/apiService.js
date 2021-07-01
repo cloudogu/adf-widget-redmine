@@ -8,11 +8,6 @@ function ApiService($http, apiEndpoint, apiEndpointRedirect, $q) {
 }
 
 ApiService.prototype.request = function (param) {
-
-  //auth = new Buffer(auth).toString('base64');
-  //const auth = $base64.encode('foo:bar'),
-  //  headers = {'Authorization': 'Basic ' + auth};
-
   return this.http.get(this.apiEndpoint + param).then(function (response) {
     return response.data;
   });
@@ -93,27 +88,27 @@ ApiService.prototype.collectPageIssues = function (params, offset) {
 };
 
 ApiService.prototype.generateParametersForIssuesOpenOnEnd = function (data) {
-  var params = this.generateGeneralIssuesParameters(data);
+  let params = this.generateGeneralIssuesParameters(data);
   params += '&status_id=*';
-  var toDate = new Date(data.timespan.toDateTime);
+  const toDate = new Date(data.timespan.toDateTime);
   params += '&created_on=<=' + this.dateToYMD(toDate);
   params += '&closed_on=>=' + this.dateToYMD(toDate);
   return params;
 };
 
 ApiService.prototype.generateParametersForIssuesOpen = function (data) {
-  var params = this.generateGeneralIssuesParameters(data);
+  let params = this.generateGeneralIssuesParameters(data);
   params += '&status_id=open';
-  var toDate = new Date(data.timespan.toDateTime);
+  const toDate = new Date(data.timespan.toDateTime);
   params += '&created_on=<=' + this.dateToYMD(toDate);
   return params;
 };
 
 ApiService.prototype.generateParametersForIssuesClosedBetweenStartAndEnd = function (data) {
-  var params = this.generateGeneralIssuesParameters(data);
+  let params = this.generateGeneralIssuesParameters(data);
   params += '&status_id=*';
-  var fromDate = new Date(data.timespan.fromDateTime);
-  var toDate = new Date(data.timespan.toDateTime);
+  const fromDate = new Date(data.timespan.fromDateTime);
+  const toDate = new Date(data.timespan.toDateTime);
   params += '&closed_on=><' + this.dateToYMD(fromDate) + '|' + this.dateToYMD(toDate);
   return params;
 };
@@ -139,9 +134,9 @@ ApiService.prototype.generateGeneralIssuesParameters = function (data) {
 };
 
 ApiService.prototype.dateToYMD = function (date) {
-  var d = date.getDate();
-  var m = date.getMonth() + 1;
-  var y = date.getFullYear();
+  const d = date.getDate();
+  const m = date.getMonth() + 1;
+  const y = date.getFullYear();
   return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 };
 
@@ -150,10 +145,17 @@ ApiService.prototype.getCustomQueries = function () {
 };
 
 ApiService.prototype.getIssuesByQueryId = function (queryId, projectId) {
-  return this.request('issues.json?query_id=' + queryId + '&project_id=' + projectId).then(function (data) {
+  let queryParameter = 'query_id=' + queryId;
+  let projectParameter = '';
+  if (projectId !== null) {
+    projectParameter = '&project_id=' + projectId;
+  }
+  return this.request('issues.json?' + queryParameter + projectParameter).then(function (data) {
     return data.issues;
   });
 };
+
+
 
 ApiService.prototype.getRedmineEndpoint = function () {
   return this.apiEndpoint;
