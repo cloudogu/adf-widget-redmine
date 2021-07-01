@@ -1,8 +1,9 @@
 'use strict';
 
-function createEditChartController(vm, projects, config, chartDataService, apiService) {
+function createEditChartController(vm, projects, config, chartDataService, apiService,  $scope, $sce) {
   vm.config = config;
   vm.projects = projects;
+
   // functions
   vm.addFilter = addFilter;
   vm.converStringsToDateObjects = converStringsToDateObjects;
@@ -24,7 +25,7 @@ function createEditChartController(vm, projects, config, chartDataService, apiSe
     {id: 'version', name: 'Fixed Version'},
     {id: 'assigned', name: 'Assigned to'},
     {id: 'tracker', name: 'Tracker'}
-  ]
+  ];
 
   if (!vm.config.timespan) {
     vm.config.timespan = {};
@@ -130,10 +131,12 @@ function createEditChartController(vm, projects, config, chartDataService, apiSe
   }
 }
 
-angular.module('adf.widget.redmine').controller('editChartController', function (projects, config, chartDataService, redmineService) {
+angular.module('adf.widget.redmine').controller('editChartController', function (projects, config, chartDataService, redmineService, $scope, $sce) {
+  $scope.assignedToTooltip = $sce.trustAsHtml('Get issues which are assigned to the given user ID. <b>me</b> (but not <b>&lt;me&gt;</b> or <b>&lt;&lt;me&gt;&gt;</b>) can be used instead an ID to fetch all issues from the logged in user. Leave empty if you want to see all issues.');
   return createEditChartController(this, projects, config, chartDataService, redmineService);
 });
 
-angular.module('adf.widget.easyredmine').controller('easyEditChartController', function (projects, config, easyChartDataService, easyRedmineService) {
+angular.module('adf.widget.easyredmine').controller('easyEditChartController', function (projects, config, easyChartDataService, easyRedmineService,  $scope, $sce) {
+  $scope.assignedToTooltip = $sce.trustAsHtml('Get issues which are assigned to the given user ID. <b>me</b> (but not <b>&lt;me&gt;</b> or <b>&lt;&lt;me&gt;&gt;</b>) can be used instead an ID to fetch all issues from the logged in user. Leave empty if you want to see all issues.');
   return createEditChartController(this, projects, config, easyChartDataService, easyRedmineService);
 });
