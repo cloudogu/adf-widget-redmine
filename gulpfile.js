@@ -73,9 +73,9 @@ gulp.task('sample', gulp.series('redmineTemplate', 'easyRedmineTemplate', functi
 }));
 
 gulp.task('watch', (done) => {
-  gulp.watch(['src/main/**'], gulp.series('sample', (done) => {
+  gulp.watch(['src/main/**'], (done) => {
     done();
-  }));
+  });
   done();
 });
 
@@ -121,7 +121,7 @@ gulp.task('clean', function (cb) {
 gulp.task('default', gulp.series('css', 'js')); // fills dist folder for release
 
 /** serve **/
-gulp.task('serve', gulp.series('watch', function () {
+gulp.task('serve', gulp.series('sample', 'watch', function () {
   connect.server({
     root: ['.tmp/dist', '.'],
     livereload: true,
