@@ -1,6 +1,6 @@
 {
   "name": "adf-widget-redmine",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "dist/adf-widget-redmine.js",
   "ignore": [
     "bower.json",
@@ -21,7 +21,7 @@
   ],
   "description": "description",
   "dependencies": {
-    "angular-dashboard-framework": ">=0.10",
+    "angular-dashboard-framework": "git://github.com/cloudogu/angular-dashboard-framework.git#main",
     "moment": "^2.18.1",
     "angular-chart.js": "^1.1.1"
 

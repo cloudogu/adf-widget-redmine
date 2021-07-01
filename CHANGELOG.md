@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.4.0] - 2021-07-01
+### Added
+- better display of errors that might occur
+- tooltips for widget configuration
+
+### Changed
+- package manager from npm to yarn
+- gulp version to v4
+- updated dependencies that had vulnerabilities
+
 ## [v0.3.0] - 2021-01-06
 ### Added
 - EasyRedmine widget: `Burn-down/up`
